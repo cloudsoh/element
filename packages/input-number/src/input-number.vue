@@ -29,7 +29,7 @@
     <el-input
       ref="input"
       :value="currentInputValue"
-      :disabled="inputNumberDisabled"
+      :disabled="disabledInput || inputNumberDisabled"
       :size="inputNumberSize"
       :max="max"
       :min="min"
@@ -80,6 +80,7 @@
       },
       value: {},
       disabled: Boolean,
+      disabledInput: Boolean,
       size: String,
       controls: {
         type: Boolean,

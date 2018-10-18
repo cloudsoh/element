@@ -77,6 +77,26 @@ Input numerical values with a customizable range.
 ```
 :::
 
+### Disabled Input
+
+:::demo For the case which you want to disable the input without disabling the control, you can use this `disabled-input` attribute..
+
+```html
+<template>
+  <el-input-number v-model="num2" :disabled-input="true"></el-input-number>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        num2: 3,
+      }
+    }
+  };
+</script>
+```
+:::
+
 ### Steps
 
 Allows you to define incremental steps.
