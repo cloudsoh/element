@@ -94,6 +94,7 @@
       },
       defaultCheckedKeys: Array,
       defaultExpandedKeys: Array,
+      currentNodeKey: [String, Number],
       renderContent: Function,
       showCheckbox: {
         type: Boolean,
@@ -110,7 +111,6 @@
           return {
             children: 'children',
             label: 'label',
-            icon: 'icon',
             disabled: 'disabled'
           };
         }
@@ -126,7 +126,8 @@
       indent: {
         type: Number,
         default: 18
-      }
+      },
+      iconClass: String
     },
 
     computed: {
@@ -420,14 +421,15 @@
           dropType = 'none';
         }
 
+        const iconPosition = dropNode.$el.querySelector('.el-tree-node__expand-icon').getBoundingClientRect();
         const dropIndicator = this.$refs.dropIndicator;
         if (dropType === 'before') {
-          indicatorTop = targetPosition.top - treePosition.top;
+          indicatorTop = iconPosition.top - treePosition.top;
         } else if (dropType === 'after') {
-          indicatorTop = targetPosition.bottom - treePosition.top;
+          indicatorTop = iconPosition.bottom - treePosition.top;
         }
         dropIndicator.style.top = indicatorTop + 'px';
-        dropIndicator.style.left = (targetPosition.right - treePosition.left) + 'px';
+        dropIndicator.style.left = (iconPosition.right - treePosition.left) + 'px';
 
         if (dropType === 'inner') {
           addClass(dropNode.$el, 'is-drop-inner');

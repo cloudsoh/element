@@ -4,7 +4,8 @@
       'is-error': validateState === 'error',
       'is-validating': validateState === 'validating',
       'is-success': validateState === 'success',
-      'is-required': isRequired || required
+      'is-required': isRequired || required,
+      'is-no-asterisk': elForm && elForm.hideRequiredAsterisk
     },
     sizeClass ? 'el-form-item--' + sizeClass : ''
   ]">
@@ -17,17 +18,21 @@
     <div class="el-form-item__content" :style="contentStyle">
       <slot></slot>
       <transition name="el-zoom-in-top">
-        <div
-          v-if="validateState === 'error' && showMessage && form.showMessage"
-          class="el-form-item__error"
-          :class="{
-            'el-form-item__error--inline': typeof inlineMessage === 'boolean'
-              ? inlineMessage
-              : (elForm && elForm.inlineMessage || false)
-          }"
-        >
-          {{validateMessage}}
-        </div>
+        <slot 
+          v-if="validateState === 'error' && showMessage && form.showMessage" 
+          name="error" 
+          :error="validateMessage">
+          <div
+            class="el-form-item__error"
+            :class="{
+              'el-form-item__error--inline': typeof inlineMessage === 'boolean'
+                ? inlineMessage
+                : (elForm && elForm.inlineMessage || false)
+            }"
+          >
+            {{validateMessage}}
+          </div>
+        </slot>
       </transition>
     </div>
   </div>
@@ -203,7 +208,7 @@
           this.validateMessage = errors ? errors[0].message : '';
 
           callback(this.validateMessage, invalidFields);
-          this.elForm && this.elForm.$emit('validate', this.prop, !errors);
+          this.elForm && this.elForm.$emit('validate', this.prop, !errors, this.validateMessage || null);
         });
       },
       clearValidate() {

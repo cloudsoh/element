@@ -30,6 +30,7 @@
       ref="input"
       :value="currentInputValue"
       :disabled="disabledInput || inputNumberDisabled"
+      :placeholder="placeholder"
       :size="inputNumberSize"
       :max="max"
       :min="min"
@@ -92,6 +93,7 @@
       },
       name: String,
       label: String,
+      placeholder: String,
       precision: {
         type: Number,
         validator(val) {
@@ -144,7 +146,7 @@
         }
       },
       controlsAtRight() {
-        return this.controlsPosition === 'right';
+        return this.controls && this.controlsPosition === 'right';
       },
       _elFormItemSize() {
         return (this.elFormItem || {}).elFormItemSize;
@@ -232,6 +234,9 @@
         if (!isNaN(newVal) || value === '') {
           this.setCurrentValue(newVal);
         }
+      },
+      select() {
+        this.$refs.input.select();
       }
     },
     mounted() {
