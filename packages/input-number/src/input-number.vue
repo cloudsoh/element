@@ -28,8 +28,8 @@
     </span>
     <el-input
       ref="input"
-      :value="currentInputValue"
       :disabled="disabledInput || inputNumberDisabled"
+      :value="displayValue"
       :placeholder="placeholder"
       :size="inputNumberSize"
       :max="max"
@@ -40,6 +40,7 @@
       @keydown.down.native.prevent="decrease"
       @blur="handleBlur"
       @focus="handleFocus"
+      @input="handleInput"
       @change="handleInputChange">
     </el-input>
   </div>
@@ -103,7 +104,8 @@
     },
     data() {
       return {
-        currentValue: 0
+        currentValue: 0,
+        userInput: null
       };
     },
     watch: {
@@ -122,6 +124,7 @@
           if (newVal >= this.max) newVal = this.max;
           if (newVal <= this.min) newVal = this.min;
           this.currentValue = newVal;
+          this.userInput = null;
           this.$emit('input', newVal);
         }
       }
@@ -157,7 +160,10 @@
       inputNumberDisabled() {
         return this.disabled || (this.elForm || {}).disabled;
       },
-      currentInputValue() {
+      displayValue() {
+        if (this.userInput !== null) {
+          return this.userInput;
+        }
         const currentValue = this.currentValue;
         if (typeof currentValue === 'number' && this.precision !== undefined) {
           return currentValue.toFixed(this.precision);
@@ -169,7 +175,7 @@
     methods: {
       toPrecision(num, precision) {
         if (precision === undefined) precision = this.numPrecision;
-        return parseFloat(parseFloat(Number(num).toFixed(precision)));
+        return parseFloat(Number(num).toFixed(precision));
       },
       getPrecision(value) {
         if (value === undefined) return 0;
@@ -209,7 +215,6 @@
       },
       handleBlur(event) {
         this.$emit('blur', event);
-        this.$refs.input.setCurrentValue(this.currentInputValue);
       },
       handleFocus(event) {
         this.$emit('focus', event);
@@ -221,19 +226,21 @@
         }
         if (newVal >= this.max) newVal = this.max;
         if (newVal <= this.min) newVal = this.min;
-        if (oldVal === newVal) {
-          this.$refs.input.setCurrentValue(this.currentInputValue);
-          return;
-        }
+        if (oldVal === newVal) return;
+        this.userInput = null;
         this.$emit('input', newVal);
         this.$emit('change', newVal, oldVal);
         this.currentValue = newVal;
+      },
+      handleInput(value) {
+        this.userInput = value;
       },
       handleInputChange(value) {
         const newVal = value === '' ? undefined : Number(value);
         if (!isNaN(newVal) || value === '') {
           this.setCurrentValue(newVal);
         }
+        this.userInput = null;
       },
       select() {
         this.$refs.input.select();

@@ -70,6 +70,8 @@ import Aside from '../packages/aside/index.js';
 import Main from '../packages/main/index.js';
 import Footer from '../packages/footer/index.js';
 import Help from '../packages/help/index.js';
+import Timeline from '../packages/timeline/index.js';
+import TimelineItem from '../packages/timeline-item/index.js';
 import locale from 'element-ui/src/locale';
 import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
 
@@ -140,6 +142,8 @@ const components = [
   Main,
   Footer,
   Help,
+  Timeline,
+  TimelineItem,
   CollapseTransition
 ];
 
@@ -173,8 +177,8 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-module.exports = {
-  version: '2.4.11',
+export default {
+  version: '2.6.1',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -248,7 +252,7 @@ module.exports = {
   Aside,
   Main,
   Footer,
-  Help
+  Help,
+  Timeline,
+  TimelineItem
 };
-
-module.exports.default = module.exports;
