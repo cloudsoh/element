@@ -24,7 +24,7 @@
         :src="file.url" alt=""
       >
       <a class="el-upload-list__item-name" @click="handleClick(file)">
-        <i class="el-icon-document"></i>{{file.name}}
+        <i class="el-icon-document"></i>{{fileName(file)}}
       </a>
       <label class="el-upload-list__item-status-label">
         <i :class="{
@@ -98,6 +98,13 @@
       handleClick(file) {
         this.handlePreview && this.handlePreview(file);
       }
+      fileName({ name, size }) {
+        if (size) {
+          return `${name} (${size}mb)`
+        } else {
+          return name;
+        }
+      },
     }
   };
 </script>
