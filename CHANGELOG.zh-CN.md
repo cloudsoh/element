@@ -1,5 +1,134 @@
 ## 更新日志
 
+### 2.7.2
+
+*2019-04-03*
+
+#### Bug fixes
+
+- Form
+  - 修复 `label-width` 为 `auto` 的样式 (#14955 by @ziyoung)
+  
+#### Optimization
+- Docs
+  - 修复文档内图片链接错误 (#14957 by @iamkun)
+- Chore
+  - 修复发布时 mkdir 异常 (#14952 by @iamkun)
+
+### 2.7.1
+
+*2019-04-03*
+
+#### 修复
+
+- Select
+  - 清空时设置 value 为 null (#14322 by @aaronfulkerson)
+- Input
+  - 当类型改变时更新 DOM (#14889 by @wacky6)
+- Table
+  - 修复当有展开列时 `defaultExpandAll` 的行为 (#14935 by @ziyoung)
+- Dialog
+  - 可以设置背景色 (#14939 by @ziyoung)
+- Form
+  - `label-width` 支持自动宽度 (#14944 by @ziyoung)
+  
+#### 优化
+- 文档
+  - 更新西班牙语文档 (#14913 by @Gonzalo2310)
+  - 新增组件自动生成法语文档 (#14924 by @ziyoung)
+  - 更新 Tabs 文档 (#14938 by @ziyoung)
+
+### 2.7.0
+
+*2019-03-28*
+
+#### 新特性
+
+- Table
+  - 增加对树形结构数据的支持 (#14632 by @ziyoung)
+
+#### 修复
+
+- Tabs
+  - 阴影样式使用全局主颜色 (#14558 by @Richard-Choooou)
+  - 当 label 改变时触发更新 (#14496 by @akki-jat)
+- Table
+  - Table footer 与 body 的对齐一致 (#14730 by @ziyoung)
+- NavMenu
+  - 修复点击 el-submenu 多次触发 childMenu 问题 (#14443 by @PanJiaChen)
+- Dropdown
+  - 兼容 Vue 2.6 新 v-slot 语法 (#14832 by @ziyoung)
+- ColorPicker
+  - 修复十六进制颜色字符串解析问题 (#14793 by @iamkun)
+- Tree
+  - 恢复 pr #13349 (#14847 by @ziyoung)
+- Tooltip
+  - 当初始值为 true 时默认显示 (#14826 by @ziyoung)
+- Docs
+  - 更新 Cascader 文档 (#14442 by @panhezeng)
+- Style
+  - 修复媒体查询 sm-only, md-only, lg-only 问题 (#14611 by @sinchang)
+
+#### 优化
+
+- Chore
+  - 增加网页描述信息 (#14802 by @iamkun)
+
+### 2.6.3
+
+*2019-03-21*
+
+#### 修复
+
+- 修复 Cascader 文档页的样式 (#14789 by @ziyoung)
+- 移除 Cascader 中多余的 DOM 操作 (#14788 by @ziyoung)
+- DateRange 支持夏令时 (#14562 by @wacky6)
+
+### 2.6.2
+
+*2019-03-21*
+
+#### 新特性
+
+- DatePicker
+  - 支持 monthrange 类型 (#14487 by @zxyRealm)
+- i18n
+  - 添加 Croatian 语言包 (#14360 by @danijelh)
+- Docs
+  - 更新 2.6.1 法语文档，修复笔误 (#14555 by @smalesys)
+  - 更新法语翻译 (#14643 by @smalesys)
+
+#### 修复
+
+- Input
+  - Fix regression (#14572 by @wacky6)
+- DatePicker
+  - 修复 first-day-of-week 的计算 (#14523 by @sinchang)
+  - 修复 WeekPicker value-format 的问题 (#13754 by @wacky6)
+- Steps
+  - 修复 #14502 (#14596 by @sinchang)
+  - 修复简单模式下的样式 (#14610 by @sinchang)
+- Docs
+  - 重命名 Table 文档中的变量 (#14587 by @likwotsing)
+  - 添加法语文档索引 (#14565 by @iamkun)
+  - 修复 TimePicker 文档页的样式 (#14579 by @ziyoung)
+  - 重命名 Upload 文档中的变量 (#14593 by @liupl)
+  - 在 Form 文档中 添加的 async-validator 文档 (#14694 by @iamkun)
+  - 修复 Tooltip 文档的 bug (#14748 by @iamkun)
+  - 修复笔误 (#14751 by @2bj)
+  - 修复 Switch 在移动端 Webkit 浏览器的高亮问题 (#14703 by @VladG0r)
+
+#### 优化
+
+- Chore:
+  - 更新 ci 构建脚本 (#14600 by @ziyoung)
+  - 更新谷歌统计 (#14560 by @iamkun)
+  - 添加更多谷歌统计事件 (#14633 by @iamkun)
+  - 更新聊天组信息 (#14741 by @iamkun)
+  - 升级测试依赖 (#14735 by @wacky6)
+  - 升级 gulp (#14745 by @ziyoung)
+  - 使用 codepen 显示 demo，修复文档中的错误 (#14747 by @ziyoung)
+
 ### 2.6.1
 
 *2019-03-03*

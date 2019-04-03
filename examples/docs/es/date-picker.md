@@ -1,3 +1,4 @@
+
 ## DatePicker
 
 Utilice Date Picker para introducir la fecha.
@@ -71,7 +72,7 @@ Date Picker básico por "día".
 
 ### Otras mediciones
 
-You can choose week, month, year or multiple dates by extending the standard date picker component.
+Puede elegir la semana, el mes, el año o varias fechas ampliando el componente estándar del selector de fechas.
 
 :::demo
 
@@ -202,6 +203,74 @@ Se soporta la selección de un rango de fechas.
 </script>
 ```
 
+:::
+
+### Rango de mes
+
+Se admite la selección de un intervalo de un mes.
+
+:::demo Cuando se encuentra en el modo de rango, los paneles izquierdo y derecho están enlazados de forma predeterminada. Si desea que los dos paneles cambien de año en curso de forma independiente, puede utilizar el atributo unlink-panels.
+```html
+<template>
+  <div class="block">
+    <span class="demonstration">Default</span>
+    <el-date-picker
+      v-model="value15"
+      type="monthrange"
+      range-separator="To"
+      start-placeholder="Start month"
+      end-placeholder="End month">
+    </el-date-picker>
+  </div>
+  <div class="block">
+    <span class="demonstration">With quick options</span>
+    <el-date-picker
+      v-model="value16"
+      type="monthrange"
+      align="right"
+      unlink-panels
+      range-separator="To"
+      start-placeholder="Start month"
+      end-placeholder="End month"
+      :picker-options="pickerOptions3">
+    </el-date-picker>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        pickerOptions3: {
+          shortcuts: [{
+            text: 'This month',
+            onClick(picker) {
+              picker.$emit('pick', [new Date(), new Date()]);
+            }
+          }, {
+            text: 'This year',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date(new Date().getFullYear(), 0);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: 'Last 6 months',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setMonth(start.getMonth() - 6);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        value15: '',
+        value16: ''
+      };
+    }
+  };
+</script>
+```
 :::
 
 ###  Valor por defecto
@@ -373,7 +442,7 @@ Al seleccionar un intervalo de fechas, puede asignar la hora para la fecha de in
 | placeholder       | placeholder cuando el modo NO es rango   | string            | —                                        | —                    |
 | start-placeholder | placeholder para la fecha de inicio en modo rango | string            | —                                        | —                    |
 | end-placeholder   | placeholder para la fecha final en modo rango | string            | —                                        | —                    |
-| type              | tipo de picker                           | string            | year/month/date/dates/datetime/ week/datetimerange/daterange | date                 |
+| type              | tipo de picker                           | string            | year/month/date/dates/datetime/ week/datetimerange/daterange/ monthrange | date                 |
 | format            | formato en que se muestra el valor en el input | string            | ver [date formats](#/es/component/date-picker#date-formats) | yyyy-MM-dd           |
 | align             | alineación                               | left/center/right | left                                     |                      |
 | popper-class      | nombre de clase personalizada para el dropdown de DatePicker | string            | —                                        | —                    |
@@ -415,6 +484,6 @@ Al seleccionar un intervalo de fechas, puede asignar la hora para la fecha de in
 | focus  | coloca el foco en el input | —           |
 
 ### Slots
-| Name             | Description                     |
-|------------------|-------------------------------- |
-| range-separator  | costume range separator content |
+| Name            | Description                           |
+| --------------- | ------------------------------------- |
+| range-separator | Separador de los rangos personalizado |

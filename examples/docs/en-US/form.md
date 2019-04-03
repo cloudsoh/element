@@ -381,6 +381,10 @@ This example shows how to customize your own validation rules to finish a two-fa
 ```
 :::
 
+:::tip
+See more advanced usage of validation rules at [async-validator](https://github.com/yiminghe/async-validator)。
+:::
+
 ### Delete or add form items dynamically
 
 :::demo In addition to passing all validation rules at once on the form component, you can also pass the validation rules or delete rules on a single form field dynamically.
@@ -603,7 +607,7 @@ All components in a Form inherit their `size` attribute from that Form. Similarl
 | rules | validation rules of form | object | — | — |
 | inline | whether the form is inline | boolean | — | false |
 | label-position | position of label. If set to 'left' or 'right', `label-width` prop is also required | string | left / right / top | right |
-| label-width | width of label, and all its direct child form items will inherit this value | string | — | — |
+| label-width    | width of label, e.g. '50px'. All its direct child form items will inherit this value. Width `auto` is supported.        | string | — | — |
 | label-suffix | suffix of the label | string | — | — |
 | hide-required-asterisk | whether required fields should have a red asterisk (star) beside their labels | boolean | — | false |
 | show-message  | whether to show the error message | boolean | — | true |
@@ -618,7 +622,7 @@ All components in a Form inherit their `size` attribute from that Form. Similarl
 | Method | Description | Parameters |
 | ---- | ---- | ---- |
 | validate | validate the whole form. Takes a callback as a param. After validation, the callback will be executed with two params: a boolean indicating if the validation has passed, and an object containing all fields that fail the validation. Returns a promise if callback is omitted | Function(callback: Function(boolean, object)) |
-| validateField | validate one or serveral form items | Function(props: string | array, callback: Function(errorMessage: string)) |
+| validateField | validate one or several form items | Function(props: string | array, callback: Function(errorMessage: string)) |
 | resetFields | reset all the fields and remove validation result | — |
 | clearValidate | clear validation message for certain fields. The parameter is prop name or an array of prop names of the form items whose validation messages will be removed. When omitted, all fields' validation messages will be cleared | Function(props: string | array) |
 
@@ -633,7 +637,7 @@ All components in a Form inherit their `size` attribute from that Form. Similarl
 | ---- | ----| ---- | ---- | ---- |
 | prop | a key of `model`. In the use of validate and resetFields method, the attribute is required | string | keys of model that passed to `form` |
 | label | label | string | — | — |
-| label-width | width of label, e.g. '50px' | string | — | — |
+| label-width | width of label, e.g. '50px'. Width `auto` is supported. | string | — | — |
 | required | whether the field is required or not, will be determined by validation rules if omitted | boolean |  — | false |
 | help | suffix a help button with given string in tooltip | string | — | — |
 | rules | validation rules of form | object | — | — |

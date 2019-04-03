@@ -9,12 +9,14 @@
     },
     sizeClass ? 'el-form-item--' + sizeClass : ''
   ]">
-    <label :for="labelFor" class="el-form-item__label" :style="labelStyle" v-if="label || $slots.label">
-      <slot name="label">
-        {{label + form.labelSuffix}}
-      </slot>
-      <el-help :content="help"></el-help>
-    </label>
+    <label-wrap
+      :is-auto-width="labelStyle && labelStyle.width === 'auto'"
+      :update-all="form.labelWidth === 'auto'">
+      <label :for="labelFor" class="el-form-item__label" :style="labelStyle" v-if="label || $slots.label">
+        <slot name="label">{{label + form.labelSuffix}}</slot>
+        <el-help :content="help"></el-help>
+      </label>
+    </label-wrap>
     <div class="el-form-item__content" :style="contentStyle">
       <slot></slot>
       <transition name="el-zoom-in-top">
@@ -44,6 +46,7 @@
   import { noop, getPropByPath } from 'element-ui/src/utils/util';
   import ElHelp from 'element-ui/packages/help';
 
+  import LabelWrap from './label-wrap';
   export default {
     name: 'ElFormItem',
 
@@ -86,6 +89,10 @@
       size: String,
       help: String
     },
+    components: {
+      // use this component to calculate auto width
+      LabelWrap
+    },
     watch: {
       error: {
         immediate: true,
@@ -117,7 +124,13 @@
         if (this.form.labelPosition === 'top' || this.form.inline) return ret;
         if (!label && !this.labelWidth && this.isNested) return ret;
         const labelWidth = this.labelWidth || this.form.labelWidth;
-        if (labelWidth) {
+        if (labelWidth === 'auto') {
+          if (this.labelWidth === 'auto') {
+            ret.marginLeft = this.computedLabelWidth;
+          } else if (this.form.labelWidth === 'auto') {
+            ret.marginLeft = this.elForm.autoLabelWidth;
+          }
+        } else {
           ret.marginLeft = labelWidth;
         }
         return ret;
@@ -176,7 +189,8 @@
         validateMessage: '',
         validateDisabled: false,
         validator: {},
-        isNested: false
+        isNested: false,
+        computedLabelWidth: ''
       };
     },
     methods: {
@@ -270,6 +284,9 @@
         }
 
         this.validate('change');
+      },
+      updateComputedLabelWidth(width) {
+        this.computedLabelWidth = width ? `${width}px` : '';
       }
     },
     mounted() {

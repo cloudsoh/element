@@ -1,5 +1,133 @@
 ## Changelog
 
+### 2.7.2
+
+*2019-04-03*
+
+#### Bug fixes
+
+- Form
+  - Fix auto `label-width` style (#14955 by @ziyoung)
+  
+#### Optimization
+- Docs
+  - Fix doc img link error (#14957 by @iamkun)
+- Chore
+  - Fix deploy mkdir error (#14952 by @iamkun)
+
+### 2.7.1
+
+*2019-04-03*
+
+#### Bug fixes
+
+- Select
+  - Set value to null when cleared (#14322 by @aaronfulkerson)
+- Input
+  - Update DOM dependent values on type change (#14889 by @wacky6)
+- Table
+  - Make `defaultExpandAll` works when expanded column exists (#14935 by @ziyoung)
+- Dialog
+  - Background color can be configured (#14939 by @ziyoung)
+- Form
+  - `label-width` supports auto width (#14944 by @ziyoung)
+  
+#### Optimization
+- Docs
+  - Update Spanish docs (#14913 by @Gonzalo2310)
+  - Add French doc for new component (#14924 by @ziyoung)
+  - Optimize Tabs docs (#14938 by @ziyoung)
+
+### 2.7.0
+
+*2019-03-28*
+
+#### New features
+
+- Table
+  - Add support tree structure data (#14632 by @ziyoung)
+
+#### Bug fixes
+
+- Tabs
+  - Use primary color as boxShadow color (#14558 by @Richard-Choooou)
+  - Rerender when label changes (#14496 by @akki-jat)
+- Table
+  - Footer follows body cell align (#14730 by @ziyoung)
+- NavMenu
+  - Fix click el-submenu trigger childMenu pop again bug (#14443 by @PanJiaChen)
+- Dropdown
+  - Make compatible with 2.6 new v-slot syntax (#14832 by @ziyoung)
+- ColorPicker
+  - Fix handle error hex color string (#14793 by @iamkun)
+- Tree
+  - Revert pr #13349 (#14847 by @ziyoung)
+- Tooltip
+  - Display when initial value is true (#14826 by @ziyoung)
+- Docs
+  - Update cascader docs (#14442 by @panhezeng)
+- Style
+  - Fix media query in sm-only, md-only, lg-only (#14611 by @sinchang)
+
+#### Optimization
+
+- Chore
+  - Add webpage description (#14802 by @iamkun)
+
+### 2.6.3
+
+*2019-03-21*
+
+#### Bug fixes
+
+- Fix Cascader demo style (#14789 by @ziyoung)
+- Remove unnecessary DOM operation (#14788 by @ziyoung)
+- Fix DatePicker default-value DST (#14562 by @wacky6)
+
+### 2.6.2
+
+*2019-03-21*
+
+#### New features
+
+- DatePicker
+  - Add monthrange for type attribute (#14487 by @zxyRealm)
+- i18n
+  - Add Croatian locale (#14360 by @danijelh)
+
+#### Bug fixes
+
+- Input
+  - Fix regression (#14572 by @wacky6)
+- DatePicker
+  - Fix first-day-of-week computation (#14523 by @sinchang)
+  - Fix week picker's value-format (#13754 by @wacky6)
+- Steps
+  - Fix issue #14502 (#14596 by @sinchang)
+  - Fix style with simple theme (#14610 by @sinchang)
+- Docs
+  - Update french doc for 2.6.1 and fix typos (#14555 by @smalesys)
+  - Rename variable in Table docs (#14587 by @likwotsing)
+  - Add french search index (#14565 by @iamkun)
+  - Fix TimePicker page style (#14579 by @ziyoung)
+  - Rename variable in Upload docs (#14593 by @liupl)
+  - French translation update (#14643 by @smalesys)
+  - Update Form async validator docs (#14694 by @iamkun)
+  - Fix tooltip doc error (#14748 by @iamkun)
+  - Fix typo (#14751 by @2bj)
+  - Fix highlighting control elements for Webkit touch (#14703 by @VladG0r)
+
+#### Optimization
+
+- Chore
+  - Update ci build script (#14600 by @ziyoung)
+  - Update ga tracking (#14560 by @iamkun)
+  - Add more ga event (#14633 by @iamkun)
+  - Update discusion group (#14741 by @iamkun)
+  - Update test deps and conf (#14735 by @wacky6)
+  - Upgrade gulp (#14745 by @ziyoung)
+  - Use codepen to display demo & fix doc error (#14747 by @ziyoung)
+
 ### 2.6.1
 
 *2019-03-03*
@@ -442,7 +570,7 @@
 - Fixed closing the DatePicker panel without changing the value incorrectly triggering the `change` event, #11017
 - Fixed keyboard navigation not working properly when Select has grouped options, #11058
 - Added `prefix` named slot for Select, #11063
-- Added 'clearValidate` method for FormItem, #11076
+- Added `clearValidate` method for FormItem, #11076
 - Added `checkOnClickNode` attribute for Tree, #11111
 
 ### 2.3.7
