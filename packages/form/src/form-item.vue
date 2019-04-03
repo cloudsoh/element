@@ -50,10 +50,6 @@
   export default {
     name: 'ElFormItem',
 
-    components: {
-      ElHelp
-    },
-
     componentName: 'ElFormItem',
 
     mixins: [emitter],
@@ -91,7 +87,8 @@
     },
     components: {
       // use this component to calculate auto width
-      LabelWrap
+      LabelWrap,
+      ElHelp
     },
     watch: {
       error: {
